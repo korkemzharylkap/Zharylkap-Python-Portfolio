@@ -6,7 +6,7 @@ st.title("🐧 Penguins Data App")
 st.write("This app demonstrates a simple interactive Streamlit application of Penguins Data Set.")
 
 def load_data():
-    df = pd.read_csv("basic_streamlit_app/data/penguins.csv")  # Using the existing penguins dataset
+    df = pd.read_csv("Zharylkap-Python-Portfolio-/basic_streamlit_app/data/penguins.csv")  # Using the existing penguins dataset
     return df
 
 # Dropdown to select species

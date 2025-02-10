@@ -5,6 +5,7 @@ import pandas as pd
 st.title("Basic Streamlit App")
 st.write("This app demonstrates a simple interactive Streamlit application.")
 
+df = data/penguins.csv
 
 # Display the dataframe
 st.write("### Sample Data:")

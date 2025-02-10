@@ -12,13 +12,13 @@ def load_data():
 # Dropdown to select species
 species = st.selectbox(
     "Select Species:",
-    options=data['species'].unique()
+    options=df['species'].unique()
 )
 
 # Dropdown to select island
 island = st.selectbox(
     "Select Island:",
-    options=data['island'].unique()
+    options=df['island'].unique()
 )
 
 # Slider for bill length
@@ -27,44 +27,44 @@ bill_length = st.slider(
     min_value=int(data['bill_length_mm'].min()),
     max_value=int(data['bill_length_mm'].max()),
     step=0.1,
-    value=(data['bill_length_mm'].min(), data['bill_length_mm'].max())
+    value=(df['bill_length_mm'].min(), df['bill_length_mm'].max())
 )
 
 # Slider for bill depth
 bill_depth = st.slider(
     "Bill Depth (mm):",
-    min_value=int(data['bill_depth_mm'].min()),
-    max_value=int(data['bill_depth_mm'].max()),
+    min_value=int(df['bill_depth_mm'].min()),
+    max_value=int(df['bill_depth_mm'].max()),
     step=0.1,
-    value=(data['bill_depth_mm'].min(), data['bill_depth_mm'].max())
+    value=(df['bill_depth_mm'].min(), df['bill_depth_mm'].max())
 )
 
 # Slider for flipper length
 flipper_length = st.slider(
     "Flipper Length (mm):",
-    min_value=int(data['flipper_length_mm'].min()),
-    max_value=int(data['flipper_length_mm'].max()),
+    min_value=int(df['flipper_length_mm'].min()),
+    max_value=int(df['flipper_length_mm'].max()),
     step=1,
-    value=(data['flipper_length_mm'].min(), data['flipper_length_mm'].max())
+    value=(df['flipper_length_mm'].min(), df['flipper_length_mm'].max())
 )
 
 # Slider for body mass
 body_mass = st.slider(
     "Body Mass (g):",
-    min_value=int(data['body_mass_g'].min()),
-    max_value=int(data['body_mass_g'].max()),
+    min_value=int(df['body_mass_g'].min()),
+    max_value=int(df['body_mass_g'].max()),
     step=10,
-    value=(data['body_mass_g'].min(), data['body_mass_g'].max())
+    value=(df['body_mass_g'].min(), df['body_mass_g'].max())
 )
 
 # Filter the dataset based on user input
 filtered_data = data[
-    (data['species'] == species) &
-    (data['island'] == island) &
-    (data['bill_length_mm'] >= bill_length[0]) & (data['bill_length_mm'] <= bill_length[1]) &
-    (data['bill_depth_mm'] >= bill_depth[0]) & (data['bill_depth_mm'] <= bill_depth[1]) &
-    (data['flipper_length_mm'] >= flipper_length[0]) & (data['flipper_length_mm'] <= flipper_length[1]) &
-    (data['body_mass_g'] >= body_mass[0]) & (data['body_mass_g'] <= body_mass[1])
+    (df['species'] == species) &
+    (df['island'] == island) &
+    (df['bill_length_mm'] >= bill_length[0]) & (data['bill_length_mm'] <= bill_length[1]) &
+    (df['bill_depth_mm'] >= bill_depth[0]) & (data['bill_depth_mm'] <= bill_depth[1]) &
+    (df['flipper_length_mm'] >= flipper_length[0]) & (data['flipper_length_mm'] <= flipper_length[1]) &
+    (df['body_mass_g'] >= body_mass[0]) & (data['body_mass_g'] <= body_mass[1])
 ]
 
 # Display filtered data

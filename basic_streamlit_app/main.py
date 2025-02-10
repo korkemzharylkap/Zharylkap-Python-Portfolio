@@ -9,7 +9,7 @@ st.write("This Streamlit app allows users to interactively filter and explore th
 df = pd.read_csv('basic_streamlit_app/data/penguins.csv')
 
 #Display head
-st.write("First few rows of the dataset:", df.head())
+st.write("**First few rows of the dataset:**", df.head())
 
 #Dropdown to select species
 species = st.selectbox(

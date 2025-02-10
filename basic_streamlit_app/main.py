@@ -1,11 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Load the dataset
-def load_data():
-    df = pd.read_csv("data/penguins.csv")  # Replace with actual dataset
-    return df
-
 # Streamlit App
 st.title("Basic Streamlit App")
 st.write("This app demonstrates a simple interactive Streamlit application.")

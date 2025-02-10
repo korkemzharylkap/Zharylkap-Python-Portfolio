@@ -3,7 +3,7 @@ import pandas as pd
 
 # Streamlit App
 st.title("🐧 Penguins Dataset Interactive Filter App")
-st.write("This Streamlit app allows users to interactively filter and explore the **Penguins Dataset**. Users can select specific species and islands from dropdown menus, and adjust sliders to filter data based on various penguin characteristics, including bill length, bill depth, flipper length, and body mass. The app then displays the filtered data and visualizes the relationship between bill length and bill depth. This interactive filtering tool helps users analyze and gain insights from the dataset based on their specific criteria.")
+st.write("This Streamlit app allows users to interactively filter and explore the **Penguins Dataset**. Users can select specific **species and islands** from dropdown menus, and adjust sliders to filter data based on various penguin characteristics, including **bill length, bill depth, flipper length, and body mass**. The app then displays the filtered data and visualizes the relationship between bill length and bill depth. This interactive filtering tool helps users analyze and gain insights from the dataset based on their specific criteria.")
 
 #Load the data
 df = pd.read_csv('basic_streamlit_app/data/penguins.csv')

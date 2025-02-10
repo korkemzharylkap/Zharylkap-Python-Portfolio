@@ -9,16 +9,3 @@ def load_data():
     df = pd.read_csv("data/penguins.csv")  # Using the existing penguins dataset
     return df
 
-# Display the dataframe
-st.write("### Sample Data:")
-st.dataframe(df)
-
-# Interactive filtering example
-column = st.selectbox("Select a column to filter:", df.columns)
-unique_values = df[column].unique()
-selected_value = st.selectbox(f"Select a value for {column}:", unique_values)
-
-filtered_df = df[df[column] == selected_value]
-st.write("### Filtered Data:")
-st.dataframe(filtered_df)
-

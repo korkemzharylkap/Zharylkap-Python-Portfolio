@@ -1,3 +1,7 @@
+pip install streamlit
+import streamlit as st
+import pandas as pd
+streamlit run basic_streamlit_app/main.py
 st.title("Penguins Data Set")
 # Interactive Filtering
 species = st.selectbox("Select Species:", df["species"].unique())

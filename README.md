@@ -41,4 +41,5 @@ This portfolio showcases my ability to handle real-world data, clean and preproc
 🔹 **Why It Matters:** This project demonstrates my ability to build **interactive data applications**, making data exploration **accessible and user-friendly**.
 
 ## 🎯 How This Project Complements My Portfolio  
-The **Tidy Data Project** strengthens my portfolio by highlighting my skills in **data cleaning and structuring**, which are fundamental for any data-driven application. It serves as a foundation for **more complex projects**, such as **predictive modeling, machine learning, and dashboard development**.
+- The **Tidy Data Project** of the 💰 **Federal R&D Budgets Data** strengthens my portfolio by highlighting my skills in **data cleaning and structuring**, which are fundamental for any data-driven application. It serves as a foundation for **more complex projects**, such as **predictive modeling, machine learning, and dashboard development**.
+- The **Streamlit Interactive Filter App** using the 🐧 **Penguins Dataset** showcases my ability to combine **data analysis, visualization, and interactivity** in a real-world application. 

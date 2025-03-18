@@ -25,7 +25,7 @@ To run the notebook, follow these steps:
      pip install pandas matplotlib seaborn numpy
 
 ## Dataset Description
-The dataset used in this project comes from [https://github.com/rfordatascience/tidytuesday/tree/main/data/2019/2019-02-12]. It includes various variables that are initially in a messy format, requiring cleaning and reorganization.
+The dataset used in this project comes from [Federal R&D Budgets](https://github.com/rfordatascience/tidytuesday/tree/main/data/2019/2019-02-12). It includes various variables that are initially in a messy format, requiring cleaning and reorganization.
 
 **Pre-processing Steps**
 1. **Loading Data**: Data is loaded into a Pandas DataFrame.
@@ -47,7 +47,9 @@ Below are some visualizations from the project:
 
 
 **Visualization 2 & 3: Analysis of Budget Trends Over Time**
+![image](https://github.com/user-attachments/assets/1012ab23-34ed-49d5-a842-02dc5e9128c3)
 
+![image](https://github.com/user-attachments/assets/ced8d6e9-2564-4af4-bfda-4058591f7ca6)
 
 
 **Code Snippet Example:**

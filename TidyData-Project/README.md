@@ -23,4 +23,31 @@ To run the notebook, follow these steps:
    numpy
    - These libraries can be installed using pip if you don't have them already:
      pip install pandas matplotlib seaborn numpy
-   
+
+## Dataset Description
+The dataset used in this project comes from [https://github.com/rfordatascience/tidytuesday/tree/main/data/2019/2019-02-12]. It includes various variables that are initially in a messy format, requiring cleaning and reorganization.
+
+**Pre-processing Steps**
+1. **Loading Data**: Data is loaded into a Pandas DataFrame.
+2. **Reshaping Data**: Data is transformed to ensure that each variable has its own column, and each observation is in its own row.
+3. **Data Cleaning**: Any unneccessary or incorrect entries are removed and corrected.
+After these steps, the data is in a tidy format and ready for analysis and visualization.
+
+## References
+For further reading on tidy data and its principles, please refer to the following resources:
+
+- **Tidy Data Principles**: [Hadley Wickham’s Tidy Data Paper](https://vita.had.co.nz/papers/tidy-data.pdf)
+- **Cheat Sheet**: [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+
+## Visual Examples
+Below are some visualizations from the project:
+
+**Visualization 1: Tidy Data After Transformation**
+
+
+
+**Visualization 2 & 3: Analysis of Budget Trends Over Time**
+
+
+
+**Code Snippet Example:**

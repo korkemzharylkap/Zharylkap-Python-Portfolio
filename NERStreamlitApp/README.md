@@ -20,8 +20,8 @@ Named Entity Recognition is the task of identifying entities like names, organiz
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/custom-ner-app.git
-cd custom-ner-app
+git clone https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio.git
+cd Zharylkap-Python-Portfolio
 
 # Install dependencies
 pip install -r requirements.txt
@@ -34,7 +34,7 @@ streamlit run app.py
 ```
 
 ## 🌐 Deployed Version
-You can also try the app live here: [Live Demo]()
+You can also try the app live here: [Live Demo](https://korkemzharylkapnerstreamslitapp.streamlit.app/)
 
 ## 🎯 App Features
 📥 Upload or input text directly into the app
@@ -53,6 +53,8 @@ You can also try the app live here: [Live Demo]()
 ]
 ```
 ## 📷 Visual Example
+
+
 
 ## 📚 Useful Resources
 - [spaCy Introduction](https://spacy.io/usage/spacy-101)

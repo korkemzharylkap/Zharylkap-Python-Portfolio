@@ -29,6 +29,8 @@ This portfolio showcases my ability to handle real-world data, clean and preproc
 🔹 **Why It Matters:** This project showcases my ability to **organize complex datasets**, an essential skill in data science and analytics.  
 
 ### 🔍 [Streamlit Interactive Filter App](https://zharylkap-python-portfolio.streamlit.app/)
+### 📂 Project Repository: [Basic Streamlit App](https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/tree/main/basic_streamlit_app)
+
 **Description:** This **Streamlit app** allows users to **interactively filter and explore** the **Penguins Dataset**. Users can select species and islands from dropdown menus and adjust sliders to filter data based on various penguin characteristics. The app then displays the filtered data and visualizes the relationship between **bill length and bill depth**.  
 🔹 **Key Features:**  
 ✅ Interactive filtering using **Streamlit**  
@@ -41,6 +43,20 @@ This portfolio showcases my ability to handle real-world data, clean and preproc
 
 🔹 **Why It Matters:** This project demonstrates my ability to build **interactive data applications**, making data exploration **accessible and user-friendly**.
 
+### [🧠 Named Entity Recognition (NER) Streamlit App](https://korkemzharylkapnerstreamslitapp.streamlit.app/)
+#### 📂 Project Repository: [NERStreamlitApp](https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/tree/main/NERStreamlitApp)
+**Description:** This project showcases a **Streamlit app** that integrates **spaCy's Named Entity Recognition (NER)** capabilities. The app allows users to upload or input custom text and define their own **entity labels and patterns** using **spaCy’s EntityRuler**. It offers personalized exploration of **Named Entity Recognition (NER)**, a key Natural Language Processing (NLP) task. The goal is to help users understand how entities like names, locations, dates, and more can be recognized in text using machine learning models and custom rules.
+🔹 **Key Features:** 
+✅ Upload and input custom text for entity recognition  
+✅ Define and apply custom NER patterns using **spaCy's EntityRuler**  
+✅ Visualize recognized entities with their labels  
+✅ User-friendly interface for exploring NER tasks
+
+<img width="1279" alt="Image" src="https://github.com/user-attachments/assets/1ea58177-2ee5-4354-b862-a4c21d772c51" />
+
+🔹 **Why It Matters:** This project demonstrates my ability to build interactive data applications, making **data exploration** accessible and **user-friendly**. It highlights my skills in creating tools that allow users to engage with complex data in an intuitive and interactive way.
+
 ## 🎯 How These Projects Complement My Portfolio
 - The **Tidy Data Project** of the 💰 **Federal R&D Budgets Data** strengthens my portfolio by highlighting my skills in **data cleaning and structuring**, which are fundamental for any data-driven application. It serves as a foundation for **more complex projects**, such as **predictive modeling, machine learning, and dashboard development**.
-- The **Streamlit Interactive Filter App** using the 🐧 **Penguins Dataset** showcases my ability to combine **data analysis, visualization, and interactivity** in a real-world application. 
+- The **Streamlit Interactive Filter App** using the 🐧 **Penguins Dataset** showcases my ability to combine **data analysis, visualization, and interactivity** in a real-world application.
+- The **Named Entity Recognition (NER) Streamlit App** showcases my ability to work with **Natural Language Processing (NLP)** tools like **spaCy** and build **interactive Streamlit apps**.

@@ -36,6 +36,9 @@ streamlit run app.py
 ## 🌐 Deployed Version
 You can also try the app live here: [Live Demo](https://korkemzharylkapnerstreamslitapp.streamlit.app/)
 
+## 📷 Visual Example
+<img width="1279" alt="Image" src="https://github.com/user-attachments/assets/1ea58177-2ee5-4354-b862-a4c21d772c51" />
+
 ## 🎯 App Features
 📥 Upload or input text directly into the app
 
@@ -52,9 +55,6 @@ You can also try the app live here: [Live Demo](https://korkemzharylkapnerstream
   { "label": "EVENT", "pattern": [{"LOWER": "world"}, {"LOWER": "cup"}] }
 ]
 ```
-## 📷 Visual Example
-
-
 
 ## 📚 Useful Resources
 - [spaCy Introduction](https://spacy.io/usage/spacy-101)

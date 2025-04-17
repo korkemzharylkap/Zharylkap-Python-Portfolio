@@ -48,7 +48,7 @@ This portfolio showcases my ability to handle real-world data, clean and preproc
 **Description:** This project showcases a **Streamlit app** that integrates **spaCy's Named Entity Recognition (NER)** capabilities. The app allows users to upload or input custom text and define their own **entity labels and patterns** using **spaCy’s EntityRuler**. It offers personalized exploration of **Named Entity Recognition (NER)**, a key Natural Language Processing (NLP) task. The goal is to help users understand how entities like names, locations, dates, and more can be recognized in text using machine learning models and custom rules.  
 🔹 **Key Features:**  
 ✅ Upload and input custom text for entity recognition  
-✅ Define and apply custom NER patterns using **spaCy's EntityRuler** 
+✅ Define and apply custom NER patterns using **spaCy's EntityRuler**  
 ✅ Visualize recognized entities with their labels  
 ✅ User-friendly interface for exploring NER tasks
 

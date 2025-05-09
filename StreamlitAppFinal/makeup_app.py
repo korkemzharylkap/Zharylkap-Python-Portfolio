@@ -7,25 +7,23 @@ import re
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
-# File paths
-MAIN_DB_FILE = pd.read_csv('StreamlitAppFinal/data/ingredients_database.csv')
-
-USER_DB_FILE = pd.read_csv('StreamlitAppFinal/data/user_ingredients.csv')
+MAIN_DB_PATH = 'StreamlitAppFinal/data/ingredients_database.csv'
+USER_DB_PATH = 'StreamlitAppFinal/data/user_ingredients.csv'
 
 # Load main ingredient database
 def load_main_database():
-    if os.path.exists(MAIN_DB_FILE):
-        with open(MAIN_DB_FILE, "r", encoding="utf-8") as f:
-            return {k.lower(): v for k, v in json.load(f).items()}
+    if os.path.exists(MAIN_DB_PATH):
+        df = pd.read_csv(MAIN_DB_PATH)
+        return df.set_index("ingredient_name").T.to_dict()  # or adjust to your CSV format
     else:
-        st.error(f"Main database file '{MAIN_DB_FILE}' not found.")
+        st.error(f"Main database file '{MAIN_DB_PATH}' not found.")
         return {}
 
 # Load user-provided ingredient data
 def load_user_database():
-    if os.path.exists(USER_DB_FILE):
-        with open(USER_DB_FILE, "r", encoding="utf-8") as f:
-            return {k.lower(): v for k, v in json.load(f).items()}
+    if os.path.exists(USER_DB_PATH):
+        df = pd.read_csv(USER_DB_PATH)
+        return df.set_index("ingredient_name").T.to_dict()
     else:
         return {}
 
@@ -34,8 +32,8 @@ def save_user_ingredient(name, data):
     name = name.strip().lower()
     user_db = load_user_database()
     user_db[name] = data
-    with open(USER_DB_FILE, "w", encoding="utf-8") as f:
-        json.dump(user_db, f, indent=4)
+    df = pd.DataFrame.from_dict(user_db, orient="index").reset_index().rename(columns={"index": "ingredient_name"})
+    df.to_csv(USER_DB_PATH, index=False)
 
 # Merge main and user databases
 def get_combined_database():

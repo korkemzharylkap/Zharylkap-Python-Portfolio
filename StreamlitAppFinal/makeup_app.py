@@ -4,6 +4,7 @@ import json
 import os
 import re
 import urllib.request
+import requests
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
@@ -12,13 +13,13 @@ st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centere
 main_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/ingredient_database.json"
 user_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"
 
-# Load the main ingredient database from the raw URL
-with urllib.request.urlopen(main_url) as response:
-    MAIN_DB_FILE = json.load(response)
+main_resp = requests.get(main_url)
+main_resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', main_resp.text)
+MAIN_DB_FILE = json.loads(main_resp_parsed)
 
-# Load the user ingredient database from the raw URL
-with urllib.request.urlopen(user_url) as response:
-    USER_DB_FILE = json.load(response)
+user_resp = requests.get(main_url)
+user_resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', user_resp.text)
+USER_DB_FILE = json.loads(main_resp_parsed)
     
 # Load main ingredient database
 def load_main_database():
@@ -28,13 +29,11 @@ def load_main_database():
 def load_user_database():
     return {k.lower(): v for k, v in USER_DB_FILE.items()}
 
-
 # Save new ingredient to user database
 def save_user_ingredient(name, data):
     name = name.strip().lower()
     user_db = load_user_database()
     user_db[name] = data
-    user_db_file_path = 'user_ingredients.json'
     with open(user_db_file_path, "w", encoding="utf-8") as f:
         json.dump(user_db, f, ensure_ascii=False, indent=4)
 

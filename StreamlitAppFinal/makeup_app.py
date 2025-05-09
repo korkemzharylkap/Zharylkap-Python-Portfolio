@@ -109,11 +109,15 @@ if results_df is not None:
         mime="text/csv"
     )
 
-# Add new ingredients
+# Dropdown-based unknown ingredient entry
 if unknown_ingredients:
-    st.subheader("🔧 Add New Ingredients")
-    for ing in unknown_ingredients:
-        with st.expander(f"Add details for: {ing}"):
+    st.subheader("🔧 Add a New Ingredient")
+    selected_unknown = st.selectbox("Select an unknown ingredient to add details", unknown_ingredients, key="unknown_selector")
+
+    if selected_unknown:
+        function = st.text_input(f"Function of {selected_unknown}", key=f"func_{selected_unknown}")
+
+        # Safety dropdown with custom input
             SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
             IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
             
@@ -133,18 +137,18 @@ if unknown_ingredients:
             else:
                 environmental_impact = impact_choice
                 
-            if st.button(f"Save {ing}", key=f"save_{ing}"):
-                new_data = {
-                    "function": function or "N/A",
-                    "safety": safety or "Unknown",
-                    "allergens": allergens or "Unknown",
-                    "source": source or "Unknown",
-                    "environmental_impact": environmental_impact or "Unknown"
-                }
-                save_user_ingredient(ing, new_data)
-                st.success(f"Saved data for '{ing}'.")
-                st.rerun()
-
+            if st.button(f"Save {selected_unknown}", key=f"save_{selected_unknown}"):
+            new_data = {
+                "function": function or "N/A",
+                "safety": safety or "Unknown",
+                "allergens": allergens or "Unknown",
+                "source": source or "Unknown",
+                "environmental_impact": environmental_impact or "Unknown"
+            }
+            save_user_ingredient(selected_unknown, new_data)
+            st.success(f"Saved data for '{selected_unknown}'.")
+            st.rerun()
+                
 # Sample ingredients
 with st.expander("🧪 Sample Ingredients"):
     if st.button("Load Sample Data"):

@@ -124,6 +124,13 @@ if unknown_ingredients:
                 st.success(f"Saved data for '{ing}'.")
                 st.rerun()
 
+# Sample data section
+with st.expander("🧪 Sample Ingredients"):  # Corrected here
+    if st.button("Load Sample Data"):
+        sample_ingredients = "Glycerin, Fragrance, Phenoxyethanol, Water, Retinol"
+        df_sample = pd.DataFrame(analyze_ingredients(sample_ingredients)[0])
+
+        st.dataframe(df_sample, use_container_width=True)
 # Footer
 st.markdown("---")
 st.caption("© 2025 Makeup Ingredient Analyzer – Built with ❤️ using Streamlit")

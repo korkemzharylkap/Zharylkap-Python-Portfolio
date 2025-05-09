@@ -123,18 +123,22 @@ if unknown_ingredients:
 
     if selected_ingredient:
         with st.expander(f"Add details for: {selected_ingredient}"):
+            function = st.text_input(f"Function of {selected_ingredient}", key=f"func_{selected_ingredient}")
+            
             # Safety dropdown options
             safety_choice = st.selectbox(
                 f"Safety of {selected_ingredient}",
                 ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"],
                 key=f"safety_choice_{selected_ingredient}"
             )
-            
             # Custom safety description if 'Other' is selected
             if safety_choice == "Other":
                 safety = st.text_input(f"Enter custom safety description for {selected_ingredient}", key=f"safety_custom_{selected_ingredient}")
             else:
                 safety = safety_choice
+
+            allergens = st.text_input(f"Allergens in {selected_ingredient}", key=f"allergens_{selected_ingredient}")
+            source = st.text_input(f"Source of {selected_ingredient}", key=f"source_{selected_ingredient}")
 
             # Environmental impact dropdown options
             environmental_choice = st.selectbox(
@@ -148,12 +152,7 @@ if unknown_ingredients:
                 environmental_impact = st.text_input(f"Enter custom environmental impact for {selected_ingredient}", key=f"impact_custom_{selected_ingredient}")
             else:
                 environmental_impact = environmental_choice
-
-            # Collect other details
-            function = st.text_input(f"Function of {selected_ingredient}", key=f"func_{selected_ingredient}")
-            allergens = st.text_input(f"Allergens in {selected_ingredient}", key=f"allergens_{selected_ingredient}")
-            source = st.text_input(f"Source of {selected_ingredient}", key=f"source_{selected_ingredient}")
-
+            
             # Save button
             if st.button(f"Save {selected_ingredient}", key=f"save_{selected_ingredient}"):
                 new_data = {

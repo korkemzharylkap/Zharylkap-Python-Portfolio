@@ -37,7 +37,7 @@ def load_user_ingredients_database_from_url(url="https://raw.githubusercontent.c
     except requests.exceptions.RequestException as e:
         print(f"Error fetching user ingredients JSON data: {e}")
         return {}
-MAIN_DB_FILE = load_user_ingredients_from_url()
+MAIN_DB_FILE = load_user_ingredients_database_from_url()
 
 # Load main ingredient database
 def load_main_database():

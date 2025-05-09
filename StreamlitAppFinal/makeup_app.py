@@ -43,8 +43,15 @@ def save_user_ingredient(name, data):
 
 # Merge main and user databases
 def get_combined_database():
-    main_db = load_main_database()
-    user_db = load_user_database()
+    main_db = load_main_database()  # This should return a dictionary
+    user_db = load_user_database()  # This should also return a dictionary
+    
+    # Check if both are dictionaries
+    if not isinstance(main_db, dict) or not isinstance(user_db, dict):
+        print("Error: One or both of the databases are not dictionaries.")
+        return None  # Handle this scenario appropriately
+    
+    # Now safely combine the two dictionaries
     combined_db = {**main_db, **user_db}
     return combined_db
 

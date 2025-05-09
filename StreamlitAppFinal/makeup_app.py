@@ -15,9 +15,11 @@ user_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-P
 
 main_resp = requests.get(main_url)
 MAIN_DB_FILE = json.loads(main_resp.text)
+print(MAIN_DB_FILE)
 
 user_resp = requests.get(user_url)
 USER_DB_FILE = json.loads(user_resp.text)
+print(USER_DB_FILE)
     
 # Load main ingredient database
 def load_main_database():

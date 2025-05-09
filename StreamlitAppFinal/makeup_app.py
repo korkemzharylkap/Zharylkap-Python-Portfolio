@@ -8,8 +8,34 @@ import re
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
 # File paths
-MAIN_DB_FILE = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/ingredient_database.json"
-USER_DB_FILE = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"
+# Function to load user ingredients from a URL
+def load_user_ingredients_from_url(url="https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"):
+    try:
+        # Send a GET request to fetch the raw content of the file
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes (4xx, 5xx)
+        
+        # Parse the JSON content from the response
+        user_ingredients = response.json()
+        return user_ingredients
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching user ingredients JSON data: {e}")
+        return {}
+USER_DB_FILE = load_user_ingredients_from_url()
+
+def load_user_ingredients_database_from_url(url="https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/ingredient_database.json"):
+    try:
+        # Send a GET request to fetch the raw content of the file
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes (4xx, 5xx)
+        
+        # Parse the JSON content from the response
+        user_ingredients = response.json()
+        return user_ingredients
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching user ingredients JSON data: {e}")
+        return {}
+MAIN_DB_FILE = load_user_ingredients_from_url()
 
 # Load main ingredient database
 def load_main_database():

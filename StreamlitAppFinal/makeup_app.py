@@ -22,20 +22,12 @@ with urllib.request.urlopen(user_url) as response:
     
 # Load main ingredient database
 def load_main_database():
-    if os.path.exists(MAIN_DB_FILE):
-        with open(MAIN_DB_FILE, "r", encoding="utf-8") as f:
-            return {k.lower(): v for k, v in json.load(f).items()}
-    else:
-        st.error(f"Main database file '{MAIN_DB_FILE}' not found.")
-        return {}
+    return {k.lower(): v for k, v in MAIN_DB_FILE.items()}
 
 # Load user-provided ingredient data
 def load_user_database():
-    if os.path.exists(USER_DB_FILE):
-        with open(USER_DB_FILE, "r", encoding="utf-8") as f:
-            return {k.lower(): v for k, v in json.load(f).items()}
-    else:
-        return {}
+    return {k.lower(): v for k, v in USER_DB_FILE.items()}
+
 
 # Save new ingredient to user database
 def save_user_ingredient(name, data):
@@ -51,7 +43,7 @@ def get_combined_database():
     user_db = load_user_database()
     combined_db = {**main_db, **user_db}
     return combined_db
-
+    
 # Parse and clean ingredient input
 def parse_ingredients(raw_text):
     split_items = re.split(r',|;|\n', raw_text)

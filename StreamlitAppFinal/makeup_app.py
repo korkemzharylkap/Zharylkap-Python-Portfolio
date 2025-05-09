@@ -8,11 +8,8 @@ import re
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
 # File paths
-with open('ingredient_database.json', 'r') as file:
-    MAIN_DB_FILE = json.load(file)
-
-with open('user_ingredients.json', 'r') as file:
-   USER_DB_FILE = json.load(file)
+MAIN_DB_FILE = "ingredient_database.json"
+USER_DB_FILE = "user_ingredients.json"
 
 # Load main ingredient database
 def load_main_database():

@@ -132,7 +132,7 @@ if unknown_ingredients:
                 st.rerun()
 
 # Sample ingredients
-with ("🧪 Sample Ingredients"):
+with st.expander("🧪 Sample Ingredients"):
     if st.button("Load Sample Data"):
         sample_ingredients = "Glycerin, Fragrance, Phenoxyethanol, Water, Retinol"
         sample_results, _ = analyze_ingredients(sample_ingredients)

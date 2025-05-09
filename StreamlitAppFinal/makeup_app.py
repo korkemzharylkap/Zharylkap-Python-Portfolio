@@ -34,9 +34,10 @@ def save_user_ingredient(name, data):
     name = name.strip().lower()
     user_db = load_user_database()
     user_db[name] = data
+    user_db_file_path = os.path.join(os.getcwd(), "user_ingredients.json")  # Set to current working directory
     with open(user_db_file_path, "w", encoding="utf-8") as f:
         json.dump(user_db, f, ensure_ascii=False, indent=4)
-
+        
 # Merge main and user databases
 def get_combined_database():
     main_db = load_main_database()

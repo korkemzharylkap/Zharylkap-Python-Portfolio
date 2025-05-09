@@ -8,8 +8,9 @@ import re
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
 # File paths
-MAIN_DB_FILE = "ingredient_database.json"
-USER_DB_FILE = "user_ingredients.json"
+MAIN_DB_FILE = pd.read_csv('StreamlitAppFinal/data/ingredients_database.csv')
+
+USER_DB_FILE = pd.read_csv('StreamlitAppFinal/data/user_ingredients.csv')
 
 # Load main ingredient database
 def load_main_database():

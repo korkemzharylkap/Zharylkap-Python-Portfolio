@@ -141,10 +141,7 @@ if unknown_ingredients:
             environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{ing}")
         else:
             environmental_impact = impact_choice
-
-
-                
-            if st.button(f"Save {selected_unknown}", key=f"save_{selected_unknown}"):
+    if st.button(f"Save {selected_unknown}", key=f"save_{selected_unknown}"):
             new_data = {
                 "function": function or "N/A",
                 "safety": safety or "Unknown",

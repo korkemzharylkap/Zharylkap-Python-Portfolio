@@ -21,11 +21,17 @@ def load_main_database():
 
 # Load user-provided ingredient data
 def load_user_database():
-    if os.path.exists(USER_DB_PATH):
-        df = pd.read_csv(USER_DB_PATH)
-        return df.set_index("ingredient_name").T.to_dict()
-    else:
-        return {}
+    df = pd.read_csv(USER_DB_PATH)
+    
+    # Check if 'ingredient_name' exists
+    if 'ingredient_name' not in df.columns:
+        print("Column 'ingredient_name' not found in the DataFrame.")
+        # If necessary, print the column names to help debug
+        print(f"Available columns: {df.columns}")
+        return None  # Or handle this scenario appropriately
+    
+    # Now we can safely set 'ingredient_name' as index
+    return df.set_index("ingredient_name").T.to_dict()
 
 # Save new ingredient to user database
 def save_user_ingredient(name, data):

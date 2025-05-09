@@ -14,11 +14,11 @@ USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 def load_main_database():
     if os.path.exists(MAIN_DB_PATH):
         df = pd.read_csv(MAIN_DB_PATH)
-        # Ensure 'ingredient_name' is in the columns
-        if 'ingredient_name' not in df.columns:
-            st.error(f"Column 'ingredient_name' not found in the main database.")
+        # Ensure 'ingredient' is in the columns
+        if 'ingredient' not in df.columns:
+            st.error(f"Column 'ingredient' not found in the main database.")
             return {}
-        return df.set_index("ingredient_name").T.to_dict()  # Return as dictionary with ingredient names as keys
+        return df.set_index("ingredient").T.to_dict()  # Return as dictionary with ingredient names as keys
     else:
         st.error(f"Main database file '{MAIN_DB_PATH}' not found.")
         return {}
@@ -27,10 +27,10 @@ def load_main_database():
 def load_user_database():
     if os.path.exists(USER_DB_PATH):
         df = pd.read_csv(USER_DB_PATH)
-        if 'ingredient_name' not in df.columns:
-            st.error(f"Column 'ingredient_name' not found in the user database.")
+        if 'ingredient' not in df.columns:
+            st.error(f"Column 'ingredient' not found in the user database.")
             return {}
-        return df.set_index("ingredient_name").T.to_dict()
+        return df.set_index("ingredient").T.to_dict()
     else:
         return {}
 
@@ -39,7 +39,7 @@ def save_user_ingredient(name, data):
     name = name.strip().lower()
     user_db = load_user_database()
     user_db[name] = data
-    df = pd.DataFrame.from_dict(user_db, orient="index").reset_index().rename(columns={"index": "ingredient_name"})
+    df = pd.DataFrame.from_dict(user_db, orient="index").reset_index().rename(columns={"index": "ingredient"})
     df.to_csv(USER_DB_PATH, index=False)
 
 # Merge main and user databases

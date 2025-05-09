@@ -14,9 +14,9 @@ USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 def load_main_database():
     if os.path.exists(MAIN_DB_PATH):
         df = pd.read_csv(MAIN_DB_PATH)
-        # Ensure 'ingredient' is in the columns
-        if 'ingredient' not in df.columns:
-            st.error(f"Column 'ingredient' not found in the main database.")
+        # Ensure ingredient is in the columns
+        if ingredient not in df.columns:
+            st.error(f"Column ingredient not found in the main database.")
             return {}
         return df.set_index("ingredient").T.to_dict()  # Return as dictionary with ingredient names as keys
     else:
@@ -27,8 +27,8 @@ def load_main_database():
 def load_user_database():
     if os.path.exists(USER_DB_PATH):
         df = pd.read_csv(USER_DB_PATH)
-        if 'ingredient' not in df.columns:
-            st.error(f"Column 'ingredient' not found in the user database.")
+        if ingredient not in df.columns:
+            st.error(f"Column ingredient not found in the user database.")
             return {}
         return df.set_index("ingredient").T.to_dict()
     else:

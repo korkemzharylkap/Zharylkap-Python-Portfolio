@@ -132,11 +132,11 @@ if unknown_ingredients:
                 st.rerun()
 
 # Sample ingredients
-with ("🧪 Sample Ingredients"):
+with st.expander("🧪 Sample Ingredients"):  # Corrected here
     if st.button("Load Sample Data"):
         sample_ingredients = "Glycerin, Fragrance, Phenoxyethanol, Water, Retinol"
-        sample_results, _ = analyze_ingredients(sample_ingredients)
-        df_sample = pd.DataFrame(sample_results)
+        df_sample = pd.DataFrame(analyze_ingredients(sample_ingredients)[0])
+
         st.dataframe(df_sample, use_container_width=True)
 
 # Footer

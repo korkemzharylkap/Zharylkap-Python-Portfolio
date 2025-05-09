@@ -114,28 +114,27 @@ if unknown_ingredients:
     st.subheader("🔧 Add a New Ingredient")
     selected_unknown = st.selectbox("Select an unknown ingredient to add details", unknown_ingredients, key="unknown_selector")
 
+# Safety dropdown with custom input
+            SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
+            IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
     if selected_unknown:
         function = st.text_input(f"Function of {selected_unknown}", key=f"func_{selected_unknown}")
 
         # Safety dropdown with custom input
-            SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
-            IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
-            
-            function = st.text_input(f"Function of {ing}", key=f"func_{ing}")
-            
-            safety_choice = st.selectbox(f"Safety of {ing}", SAFETY_OPTIONS, key=f"safety_choice_{ing}")
-            if safety_choice == "Other":
-                safety = st.text_input("Enter custom safety description", key=f"safety_custom_{ing}")
-            else:
-                safety = safety_choice
+        safety_choice = st.selectbox(f"Safety of {selected_unknown}", SAFETY_OPTIONS, key=f"safety_choice_{selected_unknown}")
+        safety = st.text_input("Enter custom safety description", key=f"safety_custom_{selected_unknown}") 
+        if safety_choice == "Other" 
+        else safety_choice
 
-            allergens = st.text_input(f"Allergens in {ing}", key=f"allergens_{ing}")
-            source = st.text_input(f"Source of {ing}", key=f"source_{ing}")
-            impact_choice = st.selectbox(f"Environmental Impact of {ing}", IMPACT_OPTIONS, key=f"impact_choice_{ing}")
-            if impact_choice == "Other":
-                environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{ing}")
-            else:
-                environmental_impact = impact_choice
+        allergens = st.text_input(f"Allergens in {selected_unknown}", key=f"allergens_{selected_unknown}")
+        source = st.text_input(f"Source of {selected_unknown}", key=f"source_{selected_unknown}")
+
+        # Environmental Impact dropdown with custom input
+        impact_choice = st.selectbox(f"Environmental Impact of {selected_unknown}", IMPACT_OPTIONS, key=f"impact_choice_{selected_unknown}")
+        environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{selected_unknown}")
+        if impact_choice == "Other" 
+        else impact_choice
+
                 
             if st.button(f"Save {selected_unknown}", key=f"save_{selected_unknown}"):
             new_data = {

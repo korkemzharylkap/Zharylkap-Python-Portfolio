@@ -1,3 +1,4 @@
+pip install requests
 import streamlit as st
 import pandas as pd
 import json
@@ -11,12 +12,15 @@ st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centere
 
 # File paths
 
-# Specify the path to your JSON file
-file_path = 'ingredient_database.json'
+url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/refs/heads/main/StreamlitAppFinal/ingredient_database.json"
 
-# Open the JSON file and load its contents
-with open(file_path, 'r', encoding='utf-8') as f:
-    data = json.load(f)
+# Send GET request to fetch the raw JSON data
+response = requests.get(url)
 
-# Print the data to check what has been loaded
-print(data)
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the JSON data
+    data = response.json()
+    print(data)  # Print the parsed JSON data
+else:
+    print(f"Failed to fetch the file: {response.status_code}")

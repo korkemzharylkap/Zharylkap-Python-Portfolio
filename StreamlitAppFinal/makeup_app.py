@@ -116,41 +116,46 @@ if results_df is not None:
 
 # Dropdown-based unknown ingredient entry
 if unknown_ingredients:
-    st.subheader("🔧 Add New Ingredients")
-    for ing in unknown_ingredients:
-        with st.expander(f"Add details for: {ing}"):
+    st.subheader("🔧 Add New Ingredient Details")
+
+    # Dropdown to select which unknown ingredient to add
+    selected_ingredient = st.selectbox("Choose an unknown ingredient to add", unknown_ingredients)
+
+    if selected_ingredient:
+        with st.expander(f"Add details for: {selected_ingredient}"):
             # Safety dropdown options
             safety_choice = st.selectbox(
-                f"Safety of {ing}",
+                f"Safety of {selected_ingredient}",
                 ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"],
-                key=f"safety_choice_{ing}"
+                key=f"safety_choice_{selected_ingredient}"
             )
             
             # Custom safety description if 'Other' is selected
             if safety_choice == "Other":
-                safety = st.text_input(f"Enter custom safety description for {ing}", key=f"safety_custom_{ing}")
+                safety = st.text_input(f"Enter custom safety description for {selected_ingredient}", key=f"safety_custom_{selected_ingredient}")
             else:
                 safety = safety_choice
 
             # Environmental impact dropdown options
             environmental_choice = st.selectbox(
-                f"Environmental Impact of {ing}",
+                f"Environmental Impact of {selected_ingredient}",
                 ["Low", "Moderate", "High", "Unknown", "Other"],
-                key=f"environmental_choice_{ing}"
+                key=f"environmental_choice_{selected_ingredient}"
             )
             
             # Custom environmental impact description if 'Other' is selected
             if environmental_choice == "Other":
-                environmental_impact = st.text_input(f"Enter custom environmental impact for {ing}", key=f"impact_custom_{ing}")
+                environmental_impact = st.text_input(f"Enter custom environmental impact for {selected_ingredient}", key=f"impact_custom_{selected_ingredient}")
             else:
                 environmental_impact = environmental_choice
 
             # Collect other details
-            function = st.text_input(f"Function of {ing}", key=f"func_{ing}")
-            allergens = st.text_input(f"Allergens in {ing}", key=f"allergens_{ing}")
-            source = st.text_input(f"Source of {ing}", key=f"source_{ing}")
+            function = st.text_input(f"Function of {selected_ingredient}", key=f"func_{selected_ingredient}")
+            allergens = st.text_input(f"Allergens in {selected_ingredient}", key=f"allergens_{selected_ingredient}")
+            source = st.text_input(f"Source of {selected_ingredient}", key=f"source_{selected_ingredient}")
 
-            if st.button(f"Save {ing}", key=f"save_{ing}"):
+            # Save button
+            if st.button(f"Save {selected_ingredient}", key=f"save_{selected_ingredient}"):
                 new_data = {
                     "function": function or "N/A",
                     "safety": safety or "Unknown",
@@ -158,8 +163,8 @@ if unknown_ingredients:
                     "source": source or "Unknown",
                     "environmental_impact": environmental_impact or "Unknown"
                 }
-                save_user_ingredient(ing, new_data)
-                st.success(f"Saved data for '{ing}'.")
+                save_user_ingredient(selected_ingredient, new_data)
+                st.success(f"Saved data for '{selected_ingredient}'.")
                 st.rerun()
                 
 # Sample ingredients

@@ -11,4 +11,4 @@ MAIN_DB_PATH = 'StreamlitAppFinal/ingredients_database.csv'
 USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 
 
-print(f"Available columns: {USER_DB_PATH.columns}")
+st.write("First few rows of the dataset:", MAIN_DB_PATH.head())

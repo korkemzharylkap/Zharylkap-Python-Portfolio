@@ -8,8 +8,8 @@ import re
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
 # File paths
-MAIN_DB_FILE = "ingredient_database.json"
-USER_DB_FILE = "user_ingredients.json"
+MAIN_DB_FILE = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/refs/heads/main/StreamlitAppFinal/ingredient_database.json"
+USER_DB_FILE = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/refs/heads/main/StreamlitAppFinal/user_ingredients.json"
 
 # Load main ingredient database
 def load_main_database():

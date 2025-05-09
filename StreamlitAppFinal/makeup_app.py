@@ -114,11 +114,25 @@ if unknown_ingredients:
     st.subheader("🔧 Add New Ingredients")
     for ing in unknown_ingredients:
         with st.expander(f"Add details for: {ing}"):
+            SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
+            IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
+            
             function = st.text_input(f"Function of {ing}", key=f"func_{ing}")
-            safety = st.text_input(f"Safety of {ing}", key=f"safety_{ing}")
+            
+            safety_choice = st.selectbox(f"Safety of {ing}", SAFETY_OPTIONS, key=f"safety_choice_{ing}")
+            if safety_choice == "Other":
+                safety = st.text_input("Enter custom safety description", key=f"safety_custom_{ing}")
+            else:
+                safety = safety_choice
+
             allergens = st.text_input(f"Allergens in {ing}", key=f"allergens_{ing}")
             source = st.text_input(f"Source of {ing}", key=f"source_{ing}")
-            environmental_impact = st.text_input(f"Environmental Impact of {ing}", key=f"impact_{ing}")
+            impact_choice = st.selectbox(f"Environmental Impact of {ing}", IMPACT_OPTIONS, key=f"impact_choice_{ing}")
+            if impact_choice == "Other":
+                environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{ing}")
+            else:
+                environmental_impact = impact_choice
+                
             if st.button(f"Save {ing}", key=f"save_{ing}"):
                 new_data = {
                     "function": function or "N/A",

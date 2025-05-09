@@ -3,6 +3,8 @@ import pandas as pd
 import json
 import os
 import re
+import requests
+import json
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")

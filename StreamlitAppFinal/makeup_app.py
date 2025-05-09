@@ -15,19 +15,27 @@ USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 def load_main_database():
     if os.path.exists(MAIN_DB_PATH):
         df = pd.read_csv(MAIN_DB_PATH)
-        return df
+        if not df.empty:
+            return df.set_index("ingredient").T.to_dict()  # Convert to a dictionary with ingredients as keys
+        else:
+            st.error(f"Main database file '{MAIN_DB_PATH}' is empty.")
+            return {}
     else:
         st.error(f"Main database file '{MAIN_DB_PATH}' not found.")
-        return None
+        return {}
 
 # Function to load the user database
 def load_user_database():
     if os.path.exists(USER_DB_PATH):
         df = pd.read_csv(USER_DB_PATH)
-        return df
+        if not df.empty:
+            return df.set_index("ingredient_name").T.to_dict()  # Convert to a dictionary with ingredient names as keys
+        else:
+            st.error(f"User database file '{USER_DB_PATH}' is empty.")
+            return {}
     else:
         st.error(f"User database file '{USER_DB_PATH}' not found.")
-        return None
+        return {}
 
 # Save new ingredient to user database
 def save_user_ingredient(name, data):

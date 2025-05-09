@@ -14,12 +14,10 @@ main_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-P
 user_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"
 
 main_resp = requests.get(main_url)
-main_resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', main_resp.text)
-MAIN_DB_FILE = json.loads(main_resp_parsed)
+MAIN_DB_FILE = json.loads(main_resp.text)
 
-user_resp = requests.get(main_url)
-user_resp_parsed = re.sub(r'^jsonp\d+\(|\)\s+$', '', user_resp.text)
-USER_DB_FILE = json.loads(main_resp_parsed)
+user_resp = requests.get(user_url)
+USER_DB_FILE = json.loads(user_resp.text)
     
 # Load main ingredient database
 def load_main_database():

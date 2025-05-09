@@ -14,24 +14,25 @@ USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 def load_main_database():
     if os.path.exists(MAIN_DB_PATH):
         df = pd.read_csv(MAIN_DB_PATH)
-        return df.set_index("ingredient_name").T.to_dict()  # or adjust to your CSV format
+        # Ensure 'ingredient_name' is in the columns
+        if 'ingredient_name' not in df.columns:
+            st.error(f"Column 'ingredient_name' not found in the main database.")
+            return {}
+        return df.set_index("ingredient_name").T.to_dict()  # Return as dictionary with ingredient names as keys
     else:
         st.error(f"Main database file '{MAIN_DB_PATH}' not found.")
         return {}
 
 # Load user-provided ingredient data
 def load_user_database():
-    df = pd.read_csv(USER_DB_PATH)
-    
-    # Check if 'ingredient_name' exists
-    if 'ingredient_name' not in df.columns:
-        print("Column 'ingredient_name' not found in the DataFrame.")
-        # If necessary, print the column names to help debug
-        print(f"Available columns: {df.columns}")
-        return None  # Or handle this scenario appropriately
-    
-    # Now we can safely set 'ingredient_name' as index
-    return df.set_index("ingredient_name").T.to_dict()
+    if os.path.exists(USER_DB_PATH):
+        df = pd.read_csv(USER_DB_PATH)
+        if 'ingredient_name' not in df.columns:
+            st.error(f"Column 'ingredient_name' not found in the user database.")
+            return {}
+        return df.set_index("ingredient_name").T.to_dict()
+    else:
+        return {}
 
 # Save new ingredient to user database
 def save_user_ingredient(name, data):
@@ -48,8 +49,8 @@ def get_combined_database():
     
     # Check if both are dictionaries
     if not isinstance(main_db, dict) or not isinstance(user_db, dict):
-        print("Error: One or both of the databases are not dictionaries.")
-        return None  # Handle this scenario appropriately
+        st.error("One or both of the databases are not dictionaries.")
+        return {}
     
     # Now safely combine the two dictionaries
     combined_db = {**main_db, **user_db}
@@ -82,7 +83,7 @@ def analyze_ingredients(raw_input):
                     "Environmental Impact": info.get("environmental_impact", "N/A")
                 })
             else:
-                print(f"Warning: {ing_lc} returned data that is not a dictionary: {info}")
+                st.warning(f"Warning: {ing_lc} returned data that is not a dictionary: {info}")
                 unknowns.append(ing)
         else:
             unknowns.append(ing)

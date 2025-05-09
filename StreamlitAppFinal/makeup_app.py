@@ -62,24 +62,31 @@ def parse_ingredients(raw_text):
 
 # Analyze ingredients
 def analyze_ingredients(raw_input):
-    database = get_combined_database()
+    database = get_combined_database()  # Assuming this returns a dictionary
     parsed = parse_ingredients(raw_input)
     results = []
     unknowns = []
+
     for ing in parsed:
         ing_lc = ing.lower()
         info = database.get(ing_lc)
+
         if info:
-            results.append({
-                "Ingredient": ing,
-                "Function": info.get("function", "N/A"),
-                "Safety": info.get("safety", "N/A"),
-                "Allergens": info.get("allergens", "N/A"),
-                "Source": info.get("source", "N/A"),
-                "Environmental Impact": info.get("environmental_impact", "N/A")
-            })
+            if isinstance(info, dict):  # Ensure the info is a dictionary
+                results.append({
+                    "Ingredient": ing,
+                    "Function": info.get("function", "N/A"),
+                    "Safety": info.get("safety", "N/A"),
+                    "Allergens": info.get("allergens", "N/A"),
+                    "Source": info.get("source", "N/A"),
+                    "Environmental Impact": info.get("environmental_impact", "N/A")
+                })
+            else:
+                print(f"Warning: {ing_lc} returned data that is not a dictionary: {info}")
+                unknowns.append(ing)
         else:
             unknowns.append(ing)
+
     return results, unknowns
 
 # Streamlit UI

@@ -9,7 +9,7 @@ st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centere
 
 # File paths
 MAIN_DB_FILE = "StreamlitAppFinal/ingredient_database.json"
-USER_DB_FILE = "user_ingredients.json"
+USER_DB_FILE = "StreamlitAppFinal/user_ingredients.json"
 
 # Load main ingredient database
 def load_main_database():

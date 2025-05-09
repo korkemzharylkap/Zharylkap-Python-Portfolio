@@ -7,8 +7,8 @@ import re
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
-MAIN_DB_PATH = 'StreamlitAppFinal/data/ingredients_database.csv'
-USER_DB_PATH = 'StreamlitAppFinal/data/user_ingredients.csv'
+MAIN_DB_PATH = 'StreamlitAppFinal/ingredients_database.csv'
+USER_DB_PATH = 'StreamlitAppFinal/user_ingredients.csv'
 
 # Load main ingredient database
 def load_main_database():

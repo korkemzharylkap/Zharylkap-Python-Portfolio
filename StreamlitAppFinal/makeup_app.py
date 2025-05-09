@@ -9,11 +9,14 @@ import urllib.request
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
 # File paths
-main_url= "https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/edit/main/StreamlitAppFinal/ingredient_database.json"
+main_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/ingredient_database.json"
+user_url = "https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"
+
+# Load the main ingredient database from the raw URL
 with urllib.request.urlopen(main_url) as response:
     MAIN_DB_FILE = json.load(response)
 
-user_url= "https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/edit/main/StreamlitAppFinal/user_ingredients.json"
+# Load the user ingredient database from the raw URL
 with urllib.request.urlopen(user_url) as response:
     USER_DB_FILE = json.load(response)
     

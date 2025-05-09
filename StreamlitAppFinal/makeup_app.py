@@ -35,7 +35,7 @@ def save_user_ingredient(name, data):
     user_db = load_user_database()
     user_db[name] = data
     with open(USER_DB_FILE, "w", encoding="utf-8") as f:
-        json.dump(user_db, f, indent=4)
+        json.dump(user_db, f, ensure_ascii=False, indent=4)
 
 # Merge main and user databases
 def get_combined_database():

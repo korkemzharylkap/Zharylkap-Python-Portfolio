@@ -3,37 +3,44 @@ import pandas as pd
 import json
 import os
 import re
-import requests
+import urllib.request
 
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
-# Functions to load ingredients from remote URLs
-def load_user_ingredients_from_url(url="https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/user_ingredients.json"):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching user ingredients: {e}")
-        return {}
+# File paths
+main_url= "https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/edit/main/StreamlitAppFinal/ingredient_database.json"
+with urllib.request.urlopen(main_url) as response:
+    MAIN_DB_FILE = json.load(response)
 
-def load_user_ingredients_database_from_url(url="https://raw.githubusercontent.com/korkemzharylkap/Zharylkap-Python-Portfolio/main/StreamlitAppFinal/ingredient_database.json"):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching ingredients database: {e}")
-        return {}
-
+user_url= "https://github.com/korkemzharylkap/Zharylkap-Python-Portfolio/edit/main/StreamlitAppFinal/user_ingredients.json"
+with urllib.request.urlopen(user_url) as response:
+    USER_DB_FILE = json.load(response)
+    
 # Load main ingredient database
 def load_main_database():
-    return load_user_ingredients_database_from_url()
+    if os.path.exists(MAIN_DB_FILE):
+        with open(MAIN_DB_FILE, "r", encoding="utf-8") as f:
+            return {k.lower(): v for k, v in json.load(f).items()}
+    else:
+        st.error(f"Main database file '{MAIN_DB_FILE}' not found.")
+        return {}
 
 # Load user-provided ingredient data
 def load_user_database():
-    return load_user_ingredients_from_url()
+    if os.path.exists(USER_DB_FILE):
+        with open(USER_DB_FILE, "r", encoding="utf-8") as f:
+            return {k.lower(): v for k, v in json.load(f).items()}
+    else:
+        return {}
+
+# Save new ingredient to user database
+def save_user_ingredient(name, data):
+    name = name.strip().lower()
+    user_db = load_user_database()
+    user_db[name] = data
+    with open(USER_DB_FILE, "w", encoding="utf-8") as f:
+        json.dump(user_db, f, indent=4)
 
 # Merge main and user databases
 def get_combined_database():
@@ -42,7 +49,12 @@ def get_combined_database():
     combined_db = {**main_db, **user_db}
     return combined_db
 
-# Analyze ingredients function
+# Parse and clean ingredient input
+def parse_ingredients(raw_text):
+    split_items = re.split(r',|;|\n', raw_text)
+    return [item.strip() for item in split_items if item.strip()]
+
+# Analyze ingredients
 def analyze_ingredients(raw_input):
     database = get_combined_database()
     parsed = parse_ingredients(raw_input)
@@ -64,13 +76,14 @@ def analyze_ingredients(raw_input):
             unknowns.append(ing)
     return results, unknowns
 
-# Streamlit UI setup
+# Streamlit UI
 st.title("💄 Makeup Ingredient Analyzer")
 st.markdown("""
 Analyze your makeup or skincare ingredient lists. Paste your ingredients or upload a `.txt` file to learn about each item's purpose, safety, and impact.
 """)
 
-# Input methods for uploading a file or pasting ingredients
+# Input methods
+st.subheader("📥 Input Ingredients")
 uploaded_file = st.file_uploader("Upload a text file with ingredients (comma-separated or one per line)", type=["txt"])
 text_input = st.text_area("Or paste your ingredient list here", height=200)
 
@@ -124,13 +137,14 @@ if unknown_ingredients:
                 st.success(f"Saved data for '{ing}'.")
                 st.rerun()
 
-# Sample data section
-with st.expander("🧪 Sample Ingredients"):  # Corrected here
+# Sample ingredients
+with ("🧪 Sample Ingredients"):
     if st.button("Load Sample Data"):
         sample_ingredients = "Glycerin, Fragrance, Phenoxyethanol, Water, Retinol"
-        df_sample = pd.DataFrame(analyze_ingredients(sample_ingredients)[0])
-
+        sample_results, _ = analyze_ingredients(sample_ingredients)
+        df_sample = pd.DataFrame(sample_results)
         st.dataframe(df_sample, use_container_width=True)
+
 # Footer
 st.markdown("---")
 st.caption("© 2025 Makeup Ingredient Analyzer – Built with ❤️ using Streamlit")

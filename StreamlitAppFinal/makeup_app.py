@@ -125,8 +125,11 @@ if unknown_ingredients:
         # Safety dropdown with custom input
         safety_choice = st.selectbox(f"Safety of {selected_unknown}", SAFETY_OPTIONS, key=f"safety_choice_{selected_unknown}")
         safety = st.text_input("Enter custom safety description", key=f"safety_custom_{selected_unknown}") 
-        if safety_choice == "Other" 
-        else safety_choice
+        if safety_choice == "Other":
+            safety = st.text_input("Enter custom safety description", key=f"safety_custom_{ing}")
+        else:
+            safety = safety_choice
+
 
         allergens = st.text_input(f"Allergens in {selected_unknown}", key=f"allergens_{selected_unknown}")
         source = st.text_input(f"Source of {selected_unknown}", key=f"source_{selected_unknown}")
@@ -134,8 +137,11 @@ if unknown_ingredients:
         # Environmental Impact dropdown with custom input
         impact_choice = st.selectbox(f"Environmental Impact of {selected_unknown}", IMPACT_OPTIONS, key=f"impact_choice_{selected_unknown}")
         environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{selected_unknown}")
-        if impact_choice == "Other" 
-        else impact_choice
+        if impact_choice == "Other":
+            environmental_impact = st.text_input("Enter custom impact description", key=f"impact_custom_{ing}")
+        else:
+            environmental_impact = impact_choice
+
 
                 
             if st.button(f"Save {selected_unknown}", key=f"save_{selected_unknown}"):

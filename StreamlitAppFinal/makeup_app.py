@@ -4,6 +4,11 @@ import json
 import os
 import re
 
+
+# Safety dropdown with custom input
+            SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
+            IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
+
 # Set Streamlit page configuration
 st.set_page_config(page_title="💄 Makeup Ingredient Analyzer", layout="centered")
 
@@ -113,10 +118,7 @@ if results_df is not None:
 if unknown_ingredients:
     st.subheader("🔧 Add a New Ingredient")
     selected_unknown = st.selectbox("Select an unknown ingredient to add details", unknown_ingredients, key="unknown_selector")
-
-# Safety dropdown with custom input
-            SAFETY_OPTIONS = ["Safe", "Moderate", "Low Risk", "High Risk", "Toxic", "Unknown", "Other"]
-            IMPACT_OPTIONS = ["Low", "Moderate", "High", "Unknown", "Other"]
+    
     if selected_unknown:
         function = st.text_input(f"Function of {selected_unknown}", key=f"func_{selected_unknown}")
 
